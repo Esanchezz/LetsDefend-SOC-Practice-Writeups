@@ -1,15 +1,15 @@
 # SOC176 - RDP Brute Force Detected
 
 ## Investigation Overview
-Ticket Type: RDP Brute Force Detected
-EventID: 234
-Event Time: Mar, 07, 2024, 11:44 AM
-Source IP: 218.92.0.56
-Destination IP: 172.16.17.148
-Destination Name: Matthew
-Protocol: RDP
-Firewall Action: Allowed
-Alert Trigger Reason: "Login failure from a single source with different non existing accounts"
+Ticket Type: RDP Brute Force Detected <br>
+EventID: 234 <br>
+Event Time: Mar, 07, 2024, 11:44 AM <br>
+Source IP: 218.92.0.56 <br>
+Destination IP: 172.16.17.148 <br>
+Destination Name: Matthew <br>
+Protocol: RDP <br>
+Firewall Action: Allowed <br>
+Alert Trigger Reason: "Login failure from a single source with different non existing accounts" <br>
 
 ## Objectives
 - Identify whether this was a True Positive or False Positive
@@ -17,8 +17,8 @@ Alert Trigger Reason: "Login failure from a single source with different non exi
 
 ## Findings
 ### Log Management Inspection
-The first thing I did was look up Matthew's destination IP on the log management software to inspect the logs to see if there was any suspicious activities that occured.
-Unsurprisingly, the alert was correct that there was a Bruteforce attempt starting at 08:44 AM.
+The first thing I did was look up Matthew's destination IP on the log management software to inspect the logs to see if there was any suspicious activities that occured. <br>
+Unsurprisingly, the alert was correct that there was a Bruteforce attempt starting at 08:44 AM. <br>
 There was a total of 15 attempts that occured from the start time with multiple cases of different but reoccuring usernames such as:
 - Matthew
 - sysadmin
@@ -27,12 +27,12 @@ There was a total of 15 attempts that occured from the start time with multiple 
 Out of the 15 attempts, there was 1 successful login.
 
 ### Endpoint Security Inspection
-After discovering this, I went to the provided endpoint security software and looked up Matthew's host IP and contained it.
-In this window, we are able to see the past processes that occured on the Event Time as well as Network Actions, Terminal History, and Browser history.
+After discovering this, I went to the provided endpoint security software and looked up Matthew's host IP and contained it. <br>
+In this window, we are able to see the past processes that occured on the Event Time as well as Network Actions, Terminal History, and Browser history. <br>
 In this case, I observed the Network Actions by the Event Time and discovered 5 instances where the malicious IP was recorded.
 
 ### Threat Intelligence Inspection
-When searching up the Source IP on Virustotal.com, it was flagged by 11/94 security vendors that the IP address was malicious.
+When searching up the Source IP on Virustotal.com, it was flagged by 11/94 security vendors that the IP address was malicious. <br>
 Using cisco's Talosintelligence.com, I was able to observe that the location that the IP came from was from Nanjing, China.
 
 
