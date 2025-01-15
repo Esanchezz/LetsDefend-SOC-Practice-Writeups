@@ -1,13 +1,13 @@
 # SOC251 - Quishing Detected
 
 ## Investigation Overview
-Ticket Type: Quishing Detected
-EventID: 214
-Event Time: Jan, 01, 2024, 12:37 PM
-SMPTP IP Address: 158.69.201.47
-Source Address: security@microsecmfa.com
-Destination Address: Claire@letsdefend.io
-E-mail Subject:"New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)"
+Ticket Type: Quishing Detected <br>
+EventID: 214 <br>
+Event Time: Jan, 01, 2024, 12:37 PM <br>
+SMPTP IP Address: 158.69.201.47 <br>
+Source Address: security@microsecmfa.com <br>
+Destination Address: Claire@letsdefend.io <br>
+E-mail Subject:"New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)" <br>
 Device Action: Allowed
 
 ## Objectives
@@ -19,25 +19,25 @@ Device Action: Allowed
 
 ## Findings
 ### Log Management Inspection
-First, I searched the logs for SMTP IP Address (158.69.201.47) to find any instances in the log management software.
-There was only one log for the SMTP Address and it's destination was to Claire@letsdefend.io with a destination address of 172.16.20.3.
+First, I searched the logs for SMTP IP Address (158.69.201.47) to find any instances in the log management software. <br>
+There was only one log for the SMTP Address and it's destination was to Claire@letsdefend.io with a destination address of 172.16.20.3. <br>
 
 ### Endpoint Security Inspection
-I then checked the endpoint security log for the address 172.16.20.3 to find out if the IP was to a person's computer.
-I found out that the destination IP was for an exchange server.
+I then checked the endpoint security log for the address 172.16.20.3 to find out if the IP was to a person's computer. <br>
+I found out that the destination IP was for an exchange server. <br>
 An Exchange Server is a a Microsoft developed email, calendaring, and contact managment system. It's a server application that runs on Windows Server operating systems.
 
 ### Email Security Inspection
-This is where I preformed an analysis on the suspicious email itself.
-The email's subject header says "New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)" which makes the victim gain a sense of urgency as it looks like their account needs security attention.
-What we can see on the email is the contents immitates an official Microsoft email and tells the victim that there was a mandated update to enable 2 factor authentication security on the associated account by 02/01/2024 further proving my statement that the threatactor is creating a sense of urgency to the victim.
-The contents of the email also provides an image of a QR code that tries to entice the victim to change the user's login details there.
+This is where I preformed an analysis on the suspicious email itself. <br>
+The email's subject header says "New Year's Mandatory Security Update: Implementing Multi-Factor Authentication (MFA)" which makes the victim gain a sense of urgency as it looks like their account needs security attention. <br>
+What we can see on the email is the contents immitates an official Microsoft email and tells the victim that there was a mandated update to enable 2 factor authentication security on the associated account by 02/01/2024 further proving my statement that the threatactor is creating a sense of urgency to the victim. <br>
+The contents of the email also provides an image of a QR code that tries to entice the victim to change the user's login details there. <br>
 At the end of the email, the content even says that if the user fails to comply, then their account may be blocked.
 
 ### Threat Intelligence Inspection
-Using Virustotal.com, I first inspected the source IP address (158.69.201.47) and found that it was flagged by 8/94 security vendors stating that it was either malicious or phishing.
-The source IP came from Dorval, Canada according to AbuseIPDB.
-Using Cyberchef, I inspected the QR code and it actually provided me the malicious URL (https://ipfs.io/ipfs/Qmbr8wmr41C35c3K2GfiP2F8YGzLhYpKpb4K66KU6mLmL4ipfs.io).
+Using Virustotal.com, I first inspected the source IP address (158.69.201.47) and found that it was flagged by 8/94 security vendors stating that it was either malicious or phishing. <br>
+The source IP came from Dorval, Canada according to AbuseIPDB. <br>
+Using Cyberchef, I inspected the QR code and it actually provided me the malicious URL (https://ipfs.io/ipfs/Qmbr8wmr41C35c3K2GfiP2F8YGzLhYpKpb4K66KU6mLmL4ipfs.io). <br>
 I wasn't able to see the contents of the website in a virtual environment because it was already blocked but, from previous experience, I would asssume that the URL from the QR code would also be disguised as an official Microsoft website in order to gain more credentials from the victim user much like a normal phishing attempt.
 
 ### Case Management
